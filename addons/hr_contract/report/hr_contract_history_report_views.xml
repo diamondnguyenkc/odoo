@@ -12,16 +12,19 @@
                 <field name="resource_calendar_id"/>
                 <field name="state"/>
                 <field name="is_under_contract"/>
+                <field name="contract_type_id"/>
                 <filter string="Running Contracts" name="open_contracts" domain="[('state', '=', 'open')]"/>
                 <filter string="Contracts to Review" name="contract_to_review" domain="['|', ('state', 'in', ['draft', 'close', 'cancel']), ('is_under_contract', '!=', True)]"/>
                 <filter string="No Contracts" name="no_contracts" domain="[('contract_id', '=', False)]"/>
                 <filter string="Currently Under Contract" name="currently_under_contract" domain="[('is_under_contract', '=', True)]"/>
                 <filter string="Active Employees" name="active_employees" domain="[('active_employee', '=', True)]"/>
+                <filter string="Contract Type" name="contract_type_id" domain="[('contract_type_id.name', '!=', False)]" date="date_start" />
                 <group expand="0" string="Group By">
                     <filter string="Job Position" name="job" domain="[]" context="{'group_by': 'job_id'}"/>
                     <filter string="Status" name='group_by_state' domain="[]" context="{'group_by': 'state'}"/>
                     <filter string="Reference Working Time" name="group_by_resource_calendar_id" domain="[]" context="{'group_by': 'resource_calendar_id'}"/>
                     <filter string="Salary Structure Type" name="group_by_structure_type_id" domain="[]" context="{'group_by': 'structure_type_id'}"/>
+                    <filter string="Contract Type" name="group_by_contract_type_id" domain="[]" context="{'group_by': 'contract_type_id'}" />
                 </group>
                 <searchpanel>
                     <field name="company_id" icon="fa-building" enable_counters="1"/>
